@@ -1,0 +1,5 @@
+{
+    "require": {
+        "projek-xyz/slim-monolog": "^0.1.6"
+    }
+}
