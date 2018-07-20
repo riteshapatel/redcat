@@ -1,10 +1,16 @@
 <?php
+/**
+ * slim app 
+ * @author ritesh.patel 
+ *
+ */
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 
 require 'vendor/autoload.php';
 
+// create app instance
 $app = new \Slim\App;
 
 // get dependency container
@@ -28,13 +34,7 @@ $container['logger'] = function ($c) {
     return new \Projek\Slim\Monolog('slim-app', $settings);
 };
 
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
-
-    return $response;
-});
-
+// require routes
 require 'routes/index.php';
 
 $app->run();
