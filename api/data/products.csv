@@ -1,5 +1,6 @@
-"City","Product","Units","Price"
+"city","product","units","price"
 "San Diego","apple",2,5
 "Austin","apple",5,5
 "Seattle","apple",6,5
 "Frederick","banana",4,10
+"Rockville","cherry",5,20

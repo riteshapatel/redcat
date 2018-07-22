@@ -17,8 +17,14 @@ class ComposerStaticInita7cfb0b571fe54dc6f138bdd8bf36537
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'Projek\\Slim\\' => 12,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
         ),
         'I' => 
         array (
@@ -35,6 +41,10 @@ class ComposerStaticInita7cfb0b571fe54dc6f138bdd8bf36537
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -42,6 +52,14 @@ class ComposerStaticInita7cfb0b571fe54dc6f138bdd8bf36537
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Projek\\Slim\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/projek-xyz/slim-monolog/src',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Interop\\Container\\' => 
         array (
