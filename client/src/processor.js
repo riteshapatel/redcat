@@ -112,15 +112,21 @@ function checkColumns (formula, columns) {
  * @param {*} arr1 
  * @param {*} val 
  */
-function multiply (arr1, val) {
-    if (Array.isArray(val)) {
-        return arr1.map(function (num, idx) {
-            return num * val[idx];
+function multiply (left, right) {
+    if (Array.isArray(left) && Array.isArray(right)) {
+        return left.map(function (num, idx) {
+            return num * right[idx];
         })
-    } else {
-        return arr1.map(function (num) {
-            return num * parseInt(val);
+    } else if (Array.isArray(left) && !Array.isArray(right)) {
+        return left.map(function (num) {
+            return num * parseInt(right);
         })
+    } else if (!Array.isArray(left) && Array.isArray(right)) {
+        return right.map(function (num) {
+            return num * parseInt(left);
+        })
+    } else if (!Array.isArray(left) && !Array.isArray(right)) {
+        return left * right;
     }
 }
 
@@ -130,15 +136,21 @@ function multiply (arr1, val) {
  * @param {*} arr1 
  * @param {*} val 
  */
-function add (arr1, val) {
-    if (Array.isArray(val)) {
-        return arr1.map(function (num, idx) {
-            return num + val[idx];
+function add (left, right) {
+    if (Array.isArray(left) && Array.isArray(right)) {
+        return left.map(function (num, idx) {
+            return num + right[idx];
         })
-    } else {
-        return arr1.map(function (num) {
-            return num + parseInt(val);
+    } else if (Array.isArray(left) && !Array.isArray(right)) {
+        return left.map(function (num) {
+            return num + parseInt(right);
         })
+    } else if (!Array.isArray(left) && Array.isArray(right)) {
+        return right.map(function (num) {
+            return num + parseInt(left);
+        })
+    } else if (!Array.isArray(left) && !Array.isArray(right)) {
+        return left + right;
     }
 }
 
@@ -148,15 +160,21 @@ function add (arr1, val) {
  * @param {*} arr1 
  * @param {*} val 
  */
-function subtract (arr1, val) {
-    if (Array.isArray(val)) {
-        return arr1.map(function (num, idx) {
-            return num - val[idx];
+function subtract (left, right) {
+    if (Array.isArray(left) && Array.isArray(right)) {
+        return left.map(function (num, idx) {
+            return num - right[idx];
         })
-    } else {
-        return arr1.map(function (num) {
-            return num - parseInt(val);
+    } else if (Array.isArray(left) && !Array.isArray(right)) {
+        return left.map(function (num) {
+            return num - parseInt(right);
         })
+    } else if (!Array.isArray(left) && Array.isArray(right)) {
+        return right.map(function (num) {
+            return num - parseInt(left);
+        })
+    } else if (!Array.isArray(left) && !Array.isArray(right)) {
+        return left - right;
     }
 }
 
@@ -166,15 +184,21 @@ function subtract (arr1, val) {
  * @param {*} arr1 
  * @param {*} val 
  */
-function divide (arr1, val) {
-    if (Array.isArray(val)) {
-        return arr1.map(function (num, idx) {
-            return num / val[idx];
+function divide (left, right) {
+    if (Array.isArray(left) && Array.isArray(right)) {
+        return left.map(function (num, idx) {
+            return num / right[idx];
         })
-    } else {
-        return arr1.map(function (num) {
-            return num / parseInt(val);
+    } else if (Array.isArray(left) && !Array.isArray(right)) {
+        return left.map(function (num) {
+            return num / parseInt(right);
         })
+    } else if (!Array.isArray(left) && Array.isArray(right)) {
+        return right.map(function (num) {
+            return num / parseInt(left);
+        })
+    } else if (!Array.isArray(left) && !Array.isArray(right)) {
+        return left / right;
     }
 }
 
@@ -185,15 +209,15 @@ function divide (arr1, val) {
  * @param {*} operand 
  * @param {*} val 
  */
-function performOperation (col1, operand, val) {
+function performOperation (left, operand, right) {
     if (operand === '*') {
-        return multiply(col1, val);
+        return multiply(left, right);
     } else if (operand === '+') {
-        return add(col1, val);
+        return add(left, right);
     } else if (operand === '-') {
-        return subtract(col1, val);
+        return subtract(left, right);
     } else if (operand === '/') {
-        return divide(col1, val);
+        return divide(left, right);
     }
 }
 
@@ -240,12 +264,29 @@ function sliceAndDrop (arr, columns, data) {
  * @param {*} data 
  */
 function calculateFirstExpression (arr, data) {
-    let col1 = _.map(data, arr[0]),
+    let left = arr[0],
         operand = arr[1],
-        col2 = _.map(data, arr[2]);
+        right = arr[2];
+    
+    let val1 = [], val2 = [];
 
-    // eslint-disable-next-line
-    return performOperation(col1, operand, col2);
+    if (isNaN(left)) {
+        if (left.length > 1) {
+            val1 = _.map(data, left);
+        }
+    } else {
+        val1 = left;
+    }
+
+    if (isNaN(right)) {
+        if (right.length > 1) {
+            val2 = _.map(data, right);
+        }
+    } else {
+        val2 = right;
+    }
+
+    return performOperation(val1, operand, val2);
 }
 
 /**
