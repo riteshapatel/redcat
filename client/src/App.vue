@@ -37,6 +37,7 @@
                 <div class="col-md-7">
                   <br />
                   <button type="button" class="btn btn-primary" v-on:click="addColumn"><i class="fa fa-plus"></i> Add Column</button>
+                  &nbsp;<button type="button" class="btn btn-warning" v-on:click="reset"><i class="fas fa-eraser"></i> Clear</button>
                 </div>
                 <div class="col-md-5"></div>
               </div>
@@ -47,8 +48,8 @@
     </div>
     <br />
     <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
         <products />
       </div>
     </div>
@@ -67,14 +68,29 @@
 
 <script>
 import products from './components/Products';
-import { isFormulaValid, calculateResults } from './processor';
+import { isFormulaValid, calculateResults } from './mathprocessor';
+import { hasJoins, processJoins } from './concatenator';
 
 export default {
   name: 'app',
+  // components
   components: {
     products
   },
+  // methods
   methods: {
+    /**
+     * @function 
+     * resets product table
+     */
+    reset: function () {
+      this.$store.dispatch('loadProducts');
+    },
+
+    /**
+     * @function 
+     * loads a csv file
+     */
     loadFile: function () {
       let formData = new FormData();
       let files = this.$refs.csvfile.files;
@@ -91,22 +107,29 @@ export default {
      */
     addColumn: function () {
         let gridData = this.$store.getters.products;
+        let colname = this.colname.replace(' ', '_').toLowerCase(),
+            allowAddColumn = false,
+            results = [];
         
-        if (this.checkFormula() && this.validColumnName()) {
-            let results = calculateResults(this.formula, this.gridColumns, gridData);
-            // eslint-disable-next-line
-            console.log('results ', results);
+        if (hasJoins(this.formula)) { // process formula with joins
+          results = processJoins(this.formula, this.gridColumns, gridData);
+          allowAddColumn = results.length > 0;
+        } else { // process math formula
+          if (this.checkFormula() && this.validColumnName()) {
+            results = calculateResults(this.formula, this.gridColumns, gridData);
+            allowAddColumn = !isNaN(results[0]); // yeah...shortcut just to check the first element
+          } else {
+            alert('Missing new column name or an invalid formula');
+          }
+        }
 
-            if (!isNaN(results[0])) {
-              // if valid results 
-              let colname = this.colname.replace(' ', '_');
-
-              // eslint-disable-next-line
-              this.$store.dispatch('setNewColumn', colname);
-              this.$store.dispatch('setNewValues', {colname: colname, results: results});
-            }
+        if (this.gridColumns.includes(colname)) {
+          alert('Column name exists, please change the column name');
         } else {
-          alert('Missing new column name or an invalid formula');
+          if (allowAddColumn) {
+            this.$store.dispatch('setNewColumn', colname);
+            this.$store.dispatch('setNewValues', {colname: colname, results: results});
+          }
         }
 
     },

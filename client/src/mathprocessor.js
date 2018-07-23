@@ -10,35 +10,6 @@ function hasWhiteSpace (formula) {
 
 /**
  * @function 
- * checks if formula has string joins 
- * @param {string} formula - formula
- */
-// eslint-disable-next-line
-function hasJoins (formula) {
-    let arr = [],
-        i = 0,
-        len;
-
-    if (formula.length) {
-        arr = formula.split(' ');
-        len = arr.length;
-        
-        for (i = 0; i < len; i++) {
-            let word = arr[i];
-
-            if (word.length === 1) {
-                if (word === '&') {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-}
-
-/**
- * @function 
  * check first and last characters of a formula, must not be an operand
  * @param {string} formula - formula
  */
