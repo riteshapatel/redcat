@@ -68,6 +68,23 @@ yarn run build
 yarn run lint
 ```
 
+**Screenshots**
+
+[Main](screenshots/main.png)
+
+[sales](screenshots/sales.png)
+
+[double_sales](screenshots/double_sales.png)
+
+[decrease_sales](screenshots/decrease_sales.png)
+
+[divide_sales](screenshots/divide_sales.png)
+
+[total_sales](screenshots/total_sales.png)
+
+[city_products](screenshots/city_products.png)
+
+
 **Comments / Questions**
 
 Questions? Gimme a holler! 
