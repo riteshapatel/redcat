@@ -21,6 +21,7 @@ Api is built with PHP Slim framework. Runs on port 8001 via built-in PHP server.
 **Routes**
 
 /payload - allows to upload the csv file
+
 /products - presents with a listing of products
 
 ```
