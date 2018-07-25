@@ -41,6 +41,8 @@ I have used VueJS with Bootstrap and FontAwesome to build the UI. Vuex handles t
 | decrease_sales | sales - 10 |
 | city_product | city & " has " & units & " " & product|
 
+UI runs on `nginx` proxied to `PHP built-in server`.
+
 **Production**
 
 App is available @ http://redcat.codepremi.com
