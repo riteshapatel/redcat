@@ -44,6 +44,15 @@ I have used VueJS with Bootstrap and FontAwesome to build the UI. Vuex handles t
 
 UI runs on `nginx` proxied to `PHP built-in server`.
 
+
+**Sample payload**
+
+[empty file](api/data/empty.csv)
+
+[products](api/data/products.csv)
+
+[smaller list of products](api/data/smaller_list.csv)
+
 **Production**
 
 App is available @ http://redcat.codepremi.com
