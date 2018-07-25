@@ -1,3 +1,7 @@
+/**
+ * axios configuration
+ * @author ritesh.patel
+ */
 import axios from 'axios';
 
 export default () => {

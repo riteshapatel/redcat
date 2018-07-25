@@ -3,7 +3,10 @@
  * @author ritesh.patel 
  */
 import _ from 'lodash';
-let invalidChars = ['*', '+', '-', '/', '&'];
+
+// joins are strictly for strings 
+// assumption: no math operators allowed
+const invalidChars = ['*', '+', '-', '/'];
 
 /**
  * @function 

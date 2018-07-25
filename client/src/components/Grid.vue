@@ -36,6 +36,7 @@
                 required: true
             }
         },
+        // filters
         filters: {
             /**
              * custom filter 

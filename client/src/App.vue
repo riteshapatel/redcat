@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container">
-    <div class="card offset-md-1 col-md-11">
+    <div class="card">
       <div class="card-header">
         <h4>RedCAT Project</h4>
       </div>

@@ -1,3 +1,7 @@
+/**
+ * Vuex store 
+ * @author ritesh.patel
+ */
 import 'es6-promise/auto';
 import Vue from 'vue';
 import Vuex from 'vuex';

@@ -1,5 +1,10 @@
+/**
+ * store actions 
+ * @author ritesh.patel
+ */
 import Api from '../services/Api';
 import _ from 'lodash';
+
 let actions = {
     loadFile: (context, payload) => {
         return Api().post('api/payload', payload)
@@ -86,7 +91,6 @@ let actions = {
 
         context.commit('SET_PRODUCTS', modified_products);
     }
-
 }
 
 export default actions;

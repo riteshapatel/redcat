@@ -1,9 +1,18 @@
+/**
+ * module to process math formula
+ * @author ritesh.patel
+ */
 import _ from 'lodash';
 
-let validOperands = ['*', '+', '-', '/', '&'];
+let validOperands = ['*', '+', '-', '/'];
 let result = [];
 let arr1 = [], arr2 = [];
 
+/**
+ * @function
+ * function to check if there is whitespace in the formula
+ * @param {*} formula 
+ */
 function hasWhiteSpace (formula) {
     return /\s/g.test(formula);
 }

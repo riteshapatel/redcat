@@ -1,3 +1,7 @@
+/**
+ * mutations 
+ * @author ritesh.patel
+ */
 let mutations = {
     /**
      * sets retrieved products from the backend
